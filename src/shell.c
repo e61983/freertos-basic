@@ -25,6 +25,7 @@ void host_command(int, char **);
 void mmtest_command(int, char **);
 void test_command(int, char **);
 void hello_command(int, char **);
+void new_command(int, char **);
 void _command(int, char **);
 void newTask(void *pvParameters);
 
@@ -40,6 +41,7 @@ cmdlist cl[]={
 	MKCL(help, "help"),
 	MKCL(test, "test new function"),
 	MKCL(hello, "hello world"),
+	MKCL(new, "create a new task"),
 	MKCL(, ""),
 };
 
@@ -192,6 +194,14 @@ void test_command(int n, char *argv[]) {
 void hello_command(int n, char *argv[]){
     fio_printf(1, "\n\rHELLO ! \r\n");
     fio_printf(1, "\rWelcome to FreeRTOS Shell\n\r");
+    return;
+}
+
+void new_command(int n, char *argv[]){
+    fio_printf(1, "\n\rCreate a new task %s ..\n\r", "hello");
+	xTaskCreate(newTask,
+	            (signed portCHAR *) "newTask",
+	            512 /* stack size */, NULL, tskIDLE_PRIORITY + 1, NULL);
     return;
 }
 
