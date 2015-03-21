@@ -24,6 +24,7 @@ void help_command(int, char **);
 void host_command(int, char **);
 void mmtest_command(int, char **);
 void test_command(int, char **);
+void hello_command(int, char **);
 void _command(int, char **);
 
 #define MKCL(n, d) {.name=#n, .fptr=n ## _command, .desc=d}
@@ -37,6 +38,7 @@ cmdlist cl[]={
 	MKCL(mmtest, "heap memory allocation test"),
 	MKCL(help, "help"),
 	MKCL(test, "test new function"),
+	MKCL(hello, "hello world"),
 	MKCL(, ""),
 };
 
@@ -184,6 +186,12 @@ void test_command(int n, char *argv[]) {
     }
 
     host_action(SYS_CLOSE, handle);
+}
+
+void hello_command(int n, char *argv[]){
+    fio_printf(1, "\n\rHELLO ! \r\n");
+    fio_printf(1, "\rWelcome to FreeRTOS Shell\n\r");
+    return;
 }
 
 void _command(int n, char *argv[]){
