@@ -26,6 +26,7 @@ void mmtest_command(int, char **);
 void test_command(int, char **);
 void hello_command(int, char **);
 void _command(int, char **);
+void newTask(void *pvParameters);
 
 #define MKCL(n, d) {.name=#n, .fptr=n ## _command, .desc=d}
 
@@ -192,6 +193,12 @@ void hello_command(int n, char *argv[]){
     fio_printf(1, "\n\rHELLO ! \r\n");
     fio_printf(1, "\rWelcome to FreeRTOS Shell\n\r");
     return;
+}
+
+void newTask(void *pvParameters){
+    fio_printf(1, "\n\rNEW TASK\r\n");
+    while(1)
+	    vTaskDelay( 250 / portTICK_RATE_MS );
 }
 
 void _command(int n, char *argv[]){
