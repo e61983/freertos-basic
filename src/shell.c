@@ -207,8 +207,7 @@ void new_command(int n, char *argv[]){
 
 void newTask(void *pvParameters){
     fio_printf(1, "\n\rNEW TASK\r\n");
-    while(1)
-	    vTaskDelay( 250 / portTICK_RATE_MS );
+    while(1);
 }
 
 void _command(int n, char *argv[]){
